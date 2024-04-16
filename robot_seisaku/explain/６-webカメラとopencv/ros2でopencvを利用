@@ -1,4 +1,4 @@
-~/ros2_ws/src$ ros2 pkg create -–build-type ament_python image_pubsub
+~/ros2_ws/src$ ros2 pkg create --build-type ament_python image_pubsub
 ~/ros2_ws/src$ cd image_pubsub/image_pubsub
 ~/ros2_ws/src/image_pubsub/image_pubsub$
 touch image_publisher.py
