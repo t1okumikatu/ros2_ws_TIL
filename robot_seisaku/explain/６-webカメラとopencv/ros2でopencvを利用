@@ -1,1 +1,6 @@
+~/ros2_ws/src$ ros2 pkg create -–build-type ament_python image_pubsub   ~/ros2_ws/src$ cd image_pubsub/image_pubsub   ~/ros2_ws/src/image_pubsub/image_pubsub $ touch image_publisher.py
+~/ros2_ws/src/image_pubsub/image_pubsub $ touch image_subscriber.py
+「setup.py」に追記します。   entry_points={        'console_scripts': [            ‘img_publisher = image_pubsub.image_publisher:main’,            'img_subscriber = image_pubsub.image_subscriber:main',       ],   },  実行してみます。   ~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y   ~/ros2_ws$ colcon build --packages-select image_pubsub   ~/ros2_ws$ source install/setup.bash   ~/ros2_ws$ ros2 run image_pubsub img_publisher
+~$ source /opt/ros/humble/setup.bash   ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash   ~/ros2_ws$ ros2 run image_pubsub img_subscriber
+~/ros2_ws$ source /opt/ros/humble/setup.bash   ~/ros2_ws$ rqt_graph
 
