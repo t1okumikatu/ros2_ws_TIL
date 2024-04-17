@@ -30,7 +30,7 @@ colcon build --packages-select robot_controller
 R:$ source /opt/ros/humble/setup.bash
 R:$ cd ros2_ws/src
 R:~/ros2_ws/src$ 
-ros2 pkg create –-build-type ament_python –-node-name command_subscriber robot_controller
+ros2 pkg create --build-type ament_python --node-name command_subscriber robot_controller
 ==setup.py==
 entry_points={   
 'console_scripts': [   
