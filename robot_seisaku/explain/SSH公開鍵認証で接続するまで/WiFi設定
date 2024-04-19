@@ -1,0 +1,30 @@
+基本 - IPアドレスの固定
+設定ファイル ( /etc/netplan/99_config.yaml ) を作成し既存の設定を上書きします。
+
+/etc/netplan/99_config.yaml を作成しIPアドレスを設定する
+以下は設定例
+
+network:
+  version: 2
+  renderer: networkd
+  ethernets:
+    eth0:
+      dhcp4: false
+      dhcp6: false
+      addresses: [192.168.1.70/24]
+      routes:
+        - to: default
+          via: 192.168.1.1      
+      nameservers:
+        addresses: [192.168.1.1, 8.8.8.8, 8.8.4.4]
+ファイルのパーミッションを変更する
+
+sudo chmod 600 /etc/netplan/99_config.yaml
+設定の反映を行う
+
+sudo netplan apply
+※ ルーターのアドレス指定方法が、Ubuntu22.04(21?)以降変わっているようです。
+Ubuntu20.04以前では、ルーターのアドレスはgateway4: 192.168.1.1のように設定していましたが、netplan applyを実行すると下記のような警告が表示されたので、設定例を更新しました。
+
+** (process:841): WARNING **: 02:50:55.217: `gateway4` has been deprecated, use default routes instead.
+See the 'Default routes' section of the documentation for more details.
