@@ -1,1 +1,11 @@
+画像変換  USBカメラから入力された画像に画像変換を施してからPublishしてみます。「image_publisher.py」に数行追加して、
+「Canny エッジ検出」をします。   
+def timer_callback(self):
+ret, frame = self.cap.read()
+if ret == True:            # グレースケールに変換  
+frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)            # エッジを抽出
+frame_edge = cv2.Canny(frame_gray, threshold1=100, threshold2=200)
+self.publisher_.publish(self.br.cv2_to_imgmsg(frame_edge))
+self.get_logger().info('1フレームを送信')  ビルドしてから実行してみます。
+Fig 6-4　別途用意
 
