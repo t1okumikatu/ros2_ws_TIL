@@ -42,5 +42,11 @@ https://chatnoirlibre.com/ubuntu-22-04-lts-swap/
 ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 run image_pubsub img_publisher
 ~/ros2_ws$ ros2 run image_pubsub img_subscriber
+======================
+~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
+~/ros2_ws$ colcon build --packages-select image_pubsub
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run image_pubsub img_publisher
+
 
 
