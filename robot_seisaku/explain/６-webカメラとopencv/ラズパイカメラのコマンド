@@ -1,1 +1,3 @@
+vcgencmd get_camera
+supported=1 detected=1, libcamera interfaces=0
 
