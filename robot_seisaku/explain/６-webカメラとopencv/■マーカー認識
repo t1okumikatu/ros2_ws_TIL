@@ -7,12 +7,14 @@ OpenCVで簡単に利用することができます。  まず、Pythonのプロ
 ~/ros2_ws/src/image_pubsub$ python3 draw_aruco.py
 ディレクトリ内に5つのマーカーがつくられます。これを、できればA4の紙などに並べて印刷しておいてください。
 では、「image_publisher.py」をArUcoマーカーを検出するように変更します。
+============
 import rclpy # Python Client Library for ROS 2
 from rclpy.node import Node # ノードの生成に利用
 from sensor_msgs.msg import Image # メッセージ：画像
 from cv_bridge import CvBridge # ROSとOpenCV間の画像変換
 import cv2 # OpenCVライブラリ
 from cv2 import aruco
+===============
 def timer_callback(self):
 ret, frame = self.cap.read()
 if ret == True:            # グレースケールに変換
