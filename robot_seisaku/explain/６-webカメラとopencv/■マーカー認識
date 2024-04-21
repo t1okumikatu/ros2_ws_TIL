@@ -22,6 +22,7 @@ frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)            # マーカー�
 frame_markers = aruco.drawDetectedMarkers(frame_copy(), corners, ids)
 self.publisher_.publish(self.br.cv2_to_imgmsg(frame_markers))
 self.get_logger().info('1フレームを送信')  ビルドして実行します。
+==============================
 ~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
 ~/ros2_ws$ colcon build --packages-select image_pubsub
 ~/ros2_ws$ source install/setup.bash
