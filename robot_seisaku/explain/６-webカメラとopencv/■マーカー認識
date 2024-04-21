@@ -1,1 +1,40 @@
+WEBカメラ応用の最後はマーカーの検出を行なってみます。ArUcoマーカーは、
+３次元空間内の位置や姿勢を簡便に知ることができるように開発されたQRコードのような見た目のマーカーです。
+OpenCVで簡単に利用することができます。  まず、Pythonのプログラムを書いてマーカーを数種類生成してみます。
+~/ros2_ws$ cd src/image_pubsub
+~/ros2_ws/src/image_pubsub$ touch draw_aruco.py
+プログラムを実行すると、
+~/ros2_ws/src/image_pubsub$ python3 draw_aruco.py
+ディレクトリ内に5つのマーカーがつくられます。これを、できればA4の紙などに並べて印刷しておいてください。
+では、「image_publisher.py」をArUcoマーカーを検出するように変更します。
+import rclpy # Python Client Library for ROS 2
+from rclpy.node import Node # ノードの生成に利用
+from sensor_msgs.msg import Image # メッセージ：画像
+from cv_bridge import CvBridge # ROSとOpenCV間の画像変換
+import cv2 # OpenCVライブラリ
+from cv2 import aruco
+def timer_callback(self):
+ret, frame = self.cap.read()
+if ret == True:            # グレースケールに変換
+frame_gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)            # マーカーを抽出
+frame_markers = aruco.drawDetectedMarkers(frame_copy(), corners, ids)
+self.publisher_.publish(self.br.cv2_to_imgmsg(frame_markers))
+self.get_logger().info('1フレームを送信')  ビルドして実行します。
+~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
+~/ros2_ws$ colcon build --packages-select image_pubsub
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run image_pubsub img_publisher
+
+新規ターミナルを開いて「img_subscriber」ノードを実行します。  
+~$ source /opt/ros/humble/setup.bash
+~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run image_pubsub img_subscriber
+認識したマーカーのid番号と縁取りが描かれていることを確認してください。
+また縁取りが描かれていることからも想像できるように、ArUcoマーカーを使えば
+マーカーとの距離や姿勢も取得することができますが、ここでは扱いません。
+
+
+
+
+
 
