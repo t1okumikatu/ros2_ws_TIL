@@ -8,4 +8,20 @@ frame_edge = cv2.Canny(frame_gray, threshold1=100, threshold2=200)
 self.publisher_.publish(self.br.cv2_to_imgmsg(frame_edge))
 self.get_logger().info('1フレームを送信')  ビルドしてから実行してみます。
 Fig 6-4　別途用意
+==============================
+~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
+~/ros2_ws$ colcon build --packages-select image_pubsub
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run image_pubsub img_publisher
+新規ターミナルを開いて「img_subscriber」ノードを
+実行します。  
+~$ source /opt/ros/humble/setup.bash
+~$ cd ros2_ws
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run image_pubsub img_subscriber
+認識したマーカーのid番号と縁取りが描かれていることを確認してください。
+また縁取りが描かれていることからも想像できるように、ArUcoマーカーを
+使えばマーカーとの距離や姿勢も取得することができますが、ここでは扱いません。
+
+
 
