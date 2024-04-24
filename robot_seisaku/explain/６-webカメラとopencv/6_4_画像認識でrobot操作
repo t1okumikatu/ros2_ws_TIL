@@ -11,8 +11,7 @@ R:$ sudo usermod –aG video pi  「pi」はそれぞれのユーザー名で変
 「ros2_ws/src」に移動してパッケージとノードを作成します。今回はSubscriberはありません。
 R:$ source /opt/ros/humble/setup.bash
 R:$ cd ros2_ws/src
-R:~/ros2_ws/src$ ros2 pkg create –-build-type ament_
-python –-node-name image_publisher image_pub
+R:~/ros2_ws/src$ ros2 pkg create –-build-type ament_python –-node-name image_publisher image_pub
 Raspberry PiにもOpenCVをインストールします。
 R:$ sudo apt install python3-pip
 R:$ pip3 install opencv-contrib-python==4.6.0.66
