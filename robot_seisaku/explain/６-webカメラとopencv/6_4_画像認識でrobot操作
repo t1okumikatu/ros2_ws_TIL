@@ -9,7 +9,9 @@
 パスワードを入力して、Raspberry PiにSSH接続してください。下記を入力します。
 R:$ sudo usermod –aG video pi  「pi」はそれぞれのユーザー名で変えてください。
 実行後、Raspberry Piを「sudo reboot」で再起動します。
-「ros2_ws/src」に移動してパッケージとノードを作成します。今回はSubscriberはありません。
+「ros2_ws/src」に移動してパッケージとノードを作成します。
+今回はSubscriberはありません。
+===================
 R:$ source /opt/ros/humble/setup.bash
 R:$ cd ros2_ws/src
 R:~/ros2_ws/src$ ros2 pkg create --build-type ament_python --node-name image_publisher image_pub
@@ -21,13 +23,16 @@ R:$ pip3 install opencv-contrib-python==4.6.0.66
 代わりに画像サイズを縮小するコードを入れておきます。
 WiFi経由の画像トピック送信では、大きなサイズのままではフリーズしてしまいます。
 また今回はcv2.VideoCapture(0)の数値はゼロになっていると思います。
+==================
 「setup.py」に追記します。   entry_points={        'console_scripts': [            
 ‘img_publisher = image_pub.image_publisher:main’,       ],   },
 CTL+Sで保存してからビルドして実行します。 
+=========
 R:~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
 R:~/ros2_ws$ colcon build --packages-select image_pub
 R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ ros2 run image_pub img_publisher ====> 1
+===============
 そしてRaspberry Pi側でもう一つ、第５章で作成した動作コマンドのSubscriberを走らせます。
 「Visual Studio Code」のターミナルで右クリックして「Split Terminal」で新しいターミナルを起動します。
 R:~/ros2_ws$ source /opt/ros/humble/setup.bash
@@ -35,16 +40,20 @@ R:~/ros2_ws$ sudi pigpiod
 R:~/ros2_ws$ colcon build --packages-select robot_controller
 R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ ros2 run robot_controller action  ====> 2
+=============
 ノートPC側では、新たに「Terminator」を起動して二つに分割し、「img_subscriber」ノードと
-「command_publisher_gui」ノードを走らせます。  ひとつ目のターミナルで、
+「command_publisher_gui」ノードを走らせます。 
+ひとつ目のターミナルで、
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
-~/ros2_ws$ ros2 run image_pubsub img_subscriber ====> 3  
+~/ros2_ws$ ros2 run image_pubsub img_subscriber ====> 3 
+==============
 もう一方で、
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$
 ros2 run robot_controller_gui command_publisher_gui ====> 4
+=================
 として合計４つのノードを起動します。
 ノートPCからロボットの画像を見ながら操縦できることを確認してください。
 =============ローンチファイル=========================
