@@ -30,7 +30,8 @@ $ pip3 install opencv-contrib-python==4.6.0.66
 Ubuntu 22.04 LTS にスワップファイルを追加する
 https://chatnoirlibre.com/ubuntu-22-04-lts-swap/
 ============================
-■ROS2でOpenCVを利用  ROS2のPublisherノード、 Subscriberノードの間で画像をやり取りしてみます。
+■ROS2でOpenCVを利用  
+ROS2のPublisherノード、 Subscriberノードの間で画像をやり取りしてみます。
 新たにパッケージ「image_pubsub」を作成します。  
 ~/ros2_ws/src$ ros2 pkg create -–build-type ament_python image_pubsub 
 ~/ros2_ws/src$ cd image_pubsub/image_pubsub  
@@ -40,8 +41,8 @@ https://chatnoirlibre.com/ubuntu-22-04-lts-swap/
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws
 ~/ros2_ws$ source install/setup.bash
-~/ros2_ws$ ros2 run image_pubsub img_publisher
-~/ros2_ws$ ros2 run image_pubsub img_subscriber
+~/ros2_ws$ ros2 run image_pubsub img_publisher      
+~/ros2_ws$ ros2 run image_pubsub img_subscriber　　　zerow2では、出来ない
 ======================
 ~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
 ~/ros2_ws$ colcon build --packages-select image_pubsub
