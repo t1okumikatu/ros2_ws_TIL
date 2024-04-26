@@ -11,7 +11,7 @@ R:$ sudo usermod –aG video pi  「pi」はそれぞれのユーザー名で変
 実行後、Raspberry Piを「sudo reboot」で再起動します。
 「ros2_ws/src」に移動してパッケージとノードを作成します。
 今回はSubscriberはありません。
-===================
+===================image_pub=========
 R:$ source /opt/ros/humble/setup.bash
 R:$ cd ros2_ws/src
 R:~/ros2_ws/src$ ros2 pkg create --build-type ament_python --node-name image_publisher image_pub
@@ -23,7 +23,7 @@ R:$ pip3 install opencv-contrib-python==4.6.0.66
 代わりに画像サイズを縮小するコードを入れておきます。
 WiFi経由の画像トピック送信では、大きなサイズのままではフリーズしてしまいます。
 また今回はcv2.VideoCapture(0)の数値はゼロになっていると思います。
-==================
+==================image_pub==========
 「setup.py」に追記します。   entry_points={        'console_scripts': [            
 ‘img_publisher = image_pub.image_publisher:main’,       ],   },
 CTL+Sで保存してからビルドして実行します。 
@@ -47,7 +47,7 @@ R:~/ros2_ws$ ros2 run robot_controller action  ====> 2
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 run image_pubsub img_subscriber ====> 3 
-==============
+==============image_pubsub=========
 もう一方で、
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
