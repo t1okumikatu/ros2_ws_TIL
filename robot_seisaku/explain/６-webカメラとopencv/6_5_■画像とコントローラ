@@ -32,6 +32,7 @@ R:~/ros2_ws$ rosdep install -i --from-path src --rosdistro humble -y
 R:~/ros2_ws$ colcon build --packages-select image_pub
 R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ ros2 run image_pub img_publisher
+=====================================                    < 3 >
 そしてRaspberry Pi側でもう一つ、第５章で作成した動作コマンドのSubscriberを
 走らせます。「Visual Studio Code」のターミナルで右クリックして「Split Terminal」で
 新しいターミナルを起動します。 
@@ -46,7 +47,9 @@ R:~/ros2_ws$ ros2 run robot_controller action
 ひとつ目のターミナルで、   
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
-~/ros2_ws$ ros2 run image_pubsub img_subscriber  もう一方で、
+~/ros2_ws$ ros2 run image_pubsub img_subscriber 
+==========================================================< 4 >
+もう一方で、
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 run robot_controller_gui command_publisher_gui
