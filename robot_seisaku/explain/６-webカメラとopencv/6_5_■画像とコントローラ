@@ -22,7 +22,7 @@ R:$ pip3 install opencv-contrib-python==4.6.0.66
 画像変換の部分は削除して、代わりに画像サイズを縮小するコードを入れておきます。
 WiFi経由の画像トピック送信では、大きなサイズのままではフリーズしてしまいます。
 また今回はcv2.VideoCapture(0)の数値はゼロになっていると思います。  
-==========リスト6-5 image_publisher.py===================
+==========リスト6-5 image_publisher.py=================== < 1 >
 「setup.py」に追記します。 
 entry_points={ 'console_scripts': [            
 ‘img_publisher = image_pub.image_publisher:main’,
@@ -40,7 +40,7 @@ R:~/ros2_ws$ sudi pigpiod
 R:~/ros2_ws$ colcon build --packages-select robot_controller
 R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ ros2 run robot_controller action
-========================================
+========================================                  < 2 >
 ノートPC側では、新たに「Terminator」を起動して二つに分割し、
 「img_subscriber」ノードと「command_publisher_gui」ノードを走らせます。 
 ひとつ目のターミナルで、   
