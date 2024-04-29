@@ -1,0 +1,58 @@
+===5-4 GUI===
+Pyqt（パイキュート）というツールを使ってノートPCの送信側のプログラムを
+GUI化してみます。まず新しく「robot_controller_gui」という名前でパッケージを
+作成します。 
+$ source /opt/ros/humble/setup.bash
+$ cd ros2_ws/src
+~/ros2_ws/src$ 
+ros2 pkg create --build-type ament_python --node-name command_publisher_gui robot_controller_gui  
+下記のコマンドでPyqt5をインストールします。  
+~/ros2_ws/src$ sudo apt install pyqt5-dev-tools
+「Qt Designer」というソフトがインストールされていますので、これを使って
+コントロール画面を作っていきます。アイコンをダブルクリックして「Qt Designer」
+を起動すると「新しいフォーム」のウィンドウが現れます。「template/forms」で
+「MainWindow」を、「画面サイズ」で「QVCAランドスケープ(320x240)」を選んで
+「作成」をクリックします。
+​左側の「ウィジェットボックス」から「Push Button」を「MainWindow」の中央付近
+にドラッグして配置します。「プロパティ」の「objectName」を「stopButton」に
+変更します。
+さらに「プロパティ」の「text」を「Stop」に変更します。
+同様にして「fwrdButton」、「rtrnButton」、「ltrnButton」、「bwrdButton」を
+配置します。
+続いてボタンがクリックされた時の動作を設定していきます。「シグナル/スロットを編集」
+ボタンを押してから、「fwrdButton」からマウスをドラッグして適当な場所で離します。
+Fig 5-12  左側で「clicked()」を選んで、右側の「編集」ボタンをクリックします。
+「スロット」の「＋」ボタンを押すと「slot1()」と出てきますので、それを「fwrd()」と変更し
+「OK」ボタンをクリックします。
+前の画面に戻って右側で「fwrd()」を選択して「OK」をクリックします。
+同様にして他のボタンについてもスロットを設定します。
+「保存」ボタンを押して「controller.ui」という名前で保存してください。
+保存するディレクトリは、
+ros2_ws/src/robot_controller_gui/robot_controller_guiとしてください。
+これでGUI画面の作成は終了です。    
+Fig 5-17  作成されたGUIは「xml」というフォーマットになっていますので、
+これをPython形式に変更します。「Terminator」でコマンドを実行します。
+~/ros2_ws/src$ cd robot_controller_gui/robot_controller_gui
+~/ros2_ws/src/robot_controller_gui/robot_controller_gui
+$pyuic5 controller.ui –o controller.py 
+作成した「controller.py」は、ROS2のPublisherノード（command_publisher_gui.py）から呼び出して利用します。
+「Visual Studio Code」で「controller.py」を開いて見てみると、画面表示に関するコードとともにボタンを
+押したときの動作のコードも生成されています。
+=========リスト5-4 controller.py==============
+それでは、５－１節で作成した「command_publisher.py」をもとに「command_publisher_gui.py」を
+作っていきます。GUI部分は、読み込んだ「controller.py」が担当しています。
+ボタンがクリックされた時のトピックのパブリッシュ動作は、fwrd()、stop()、bwrd()、
+ltrn()、rtrn()の各関数に記述しています。
+=========リスト5-5 command_publisher_gui.py===============
+R:~/ros2_ws$ source /opt/ros/humble/setup.bash
+R:~/ros2_ws$ sudi pigpiod
+R:~/ros2_ws$ colcon build --packages-select robot_controller
+R:~/ros2_ws$ source install/setup.bash
+R:~/ros2_ws$ ros2 run robot_controller action
+ノートPC側で、ビルドして実行してみます。 
+~/ros2_ws/src/robot_controller_gui/robot_controller_gui$ cd ros2_ws
+~/ros2_ws$ colcon build –packages-select robot_controller_gui
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run robot_controller_gui command_publisher_gui
+
+
