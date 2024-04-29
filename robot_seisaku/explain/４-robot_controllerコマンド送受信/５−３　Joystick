@@ -1,1 +1,20 @@
-５−３　Joystick
+===5-3 Joystick===
+$ sudo apt install joystick   
+$ jstest /dev/input/js0
+$ sudo apt install ros-humble-joy*
+次のノードを実行してトピックを発行させます。 
+$ source /opt/ros/humble/setup.bash
+$ ros2 run joy_linux joy_linux_node
+新しくターミナルを開いてトピックの内容を見てみます。
+$ source /opt/ros/humble/setup.bash 
+$ ros2 topic echo /joy
+$ ros2 launch teleop_twist_joy teleop-launch.py
+もう一方のターミナルでトピックを確認します。
+$ ros2 topic echo /cmd_vel
+R:~/ros2_ws$ source /opt/ros/humble/setup.bash
+R:~/ros2_ws$ source install/setup.bash
+R:~/ros2_ws$ sudo pigpiod
+R:~/ros2_ws$ ros2 run robot_controller action
+
+
+
