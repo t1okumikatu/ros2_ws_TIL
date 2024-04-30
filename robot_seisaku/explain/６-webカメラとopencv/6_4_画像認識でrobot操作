@@ -76,7 +76,7 @@ $ touch my_launch.py  「my_launch.py」の中身を記述します。
 さらに「setup.py」に１行追記します。   data_files=[        # 略
 (os.path.join('share', package_name), glob('launch/*_launch.py')),   ],
 ビルドして実行します。   
-~/ros2_ws$ colcon build –packages-select image_pubsub
+~/ros2_ws$ colcon build --packages-select image_pubsub
 ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 launch image_pubsub my_launch.py
 「img_subscriber」と「command_publisher_gui」が同時に起動することを確認してください。
