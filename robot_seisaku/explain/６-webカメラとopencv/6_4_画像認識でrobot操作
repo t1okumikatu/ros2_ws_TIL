@@ -48,7 +48,7 @@ R:~/ros2_ws$ ros2 run robot_controller action  ====> 2 >>> 4  robot action >>> p
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 run image_pubsub img_subscriber ====> 3 
 ==============image_pubsub=========
-もう一方で、
+もう一方で、ノートPC側では
 ~$ source /opt/ros/humble/setup.bash
 ~$ cd ros2_ws   ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$
