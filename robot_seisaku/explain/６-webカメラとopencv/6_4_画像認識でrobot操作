@@ -72,7 +72,7 @@ ros2 run robot_controller_gui command_publisher_gui ====> 4　ノートから送
 $ touch my_launch.py  「my_launch.py」の中身を記述します。
 「package」にパッケージ名を、「executable」にノード名（setup.pyに記述した名前）を書きます。
 ========================ノートPC========================
-リスト6-6 my_launch.py
+===========リスト6-6 my_launch.py======================
 さらに「setup.py」に１行追記します。   data_files=[        # 略
 (os.path.join('share', package_name), glob('launch/*_launch.py')),   ],
 ビルドして実行します。   
@@ -93,7 +93,7 @@ R:~/ros2_ws/src$ ros2 pkg create --build-type ament_python --node-name controlle
 今回は、一つのノード（aruco_controller.py）の中にカメラから受け取ったコマンドをPublishするPublisher
 とコマンドを受け取るSubscriberが入っています。またコマンドは、少しずつ速度を変えるのではなく、
 一定の目標速度を与えるようにしています。
-リスト6-6 aruco_controller.py
+==========リスト6-6 aruco_controller.py=================
 「setup.py」を変更してから、   entry_points={        'console_scripts': [
 'controller_node = aruco_controller. aruco_controller:main',       ],   },  ビルドして実行します。
 R:~/ros2_ws$ source /opt/ros/humble/setup.bash
