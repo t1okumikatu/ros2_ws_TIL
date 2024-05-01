@@ -80,6 +80,8 @@ $ touch my_launch.py  「my_launch.py」の中身を記述します。
 ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 launch image_pubsub my_launch.py
 「img_subscriber　3」と「command_publisher_gui   4 」が同時に起動することを確認してください。
+
+
 =======■画像とコントローラ========================
 ノード（ArUcoマーカーの検出）と、Raspberry Piの「command_subscriber」ノードを合わせて、
 ArUcoマーカーをロボットに見せて操縦するアプリを作ります。今回はロボット側で完結する仕様です。
