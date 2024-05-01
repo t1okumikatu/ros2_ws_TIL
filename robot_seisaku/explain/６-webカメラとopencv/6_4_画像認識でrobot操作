@@ -89,7 +89,7 @@ ArUcoマーカーをロボットに見せて操縦するアプリを作ります
 「ros2_ws/src」に移動してパッケージとノードを作成作成します。
 R:$ source /opt/ros/humble/setup.bash
 R:$ cd ros2_ws/src
-R:~/ros2_ws/src$ ros2 pkg create –-build-type ament_python –-node-name controller_node aruco_controller
+R:~/ros2_ws/src$ ros2 pkg create --build-type ament_python --node-name controller_node aruco_controller
 今回は、一つのノード（aruco_controller.py）の中にカメラから受け取ったコマンドをPublishするPublisher
 とコマンドを受け取るSubscriberが入っています。またコマンドは、少しずつ速度を変えるのではなく、
 一定の目標速度を与えるようにしています。
