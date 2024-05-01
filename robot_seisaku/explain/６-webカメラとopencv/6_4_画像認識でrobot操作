@@ -97,7 +97,7 @@ R:~/ros2_ws/src$ ros2 pkg create --build-type ament_python --node-name controlle
 「setup.py」を変更してから、   entry_points={        'console_scripts': [
 'controller_node = aruco_controller. aruco_controller:main',       ],   },  ビルドして実行します。
 R:~/ros2_ws$ source /opt/ros/humble/setup.bash
-R:~/ros2_ws$ sudi pigpiod
+R:~/ros2_ws$ sudo pigpiod
 R:~/ros2_ws$ colcon build --packages-select aruco_controller
 R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ ros2 run aruco_controller controller_node
