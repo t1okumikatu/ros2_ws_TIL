@@ -89,25 +89,25 @@ CTL+Sで保存してからビルドして実行します。
 :::複数のノードを起動するアプリケーションの場合等で、ターミナルをいくつも立ち上げてコマンドを入力して、
 :::というのは面倒です。このようなときにはローンチファイルと呼ばれるものを作ることで一つのコマンドで実行する
 :::ことができます。
-:::===ノートPC側の２つのノードをまとめるローンチファイルを作ってみます。===  
-:::「image_pubsub」パッケージと「robot_controller_gui」パッケージが関係しますが、その片方の
-:::「image_pubsub」ディレクトリの直下に「launch」というディレクトリと、その中に「my_launch.py」
+:::===raspi側の２つのノードをまとめるローンチファイルを作ってみます。===  
+:::「image_pub」パッケージと「robot_controller」パッケージが関係しますが、その片方の
+:::「image_pub」ディレクトリの直下に「launch」というディレクトリと、その中に「you_launch.py」
 :::というファイル（名前は何でもよい）を作成します。
-:::~/ros2_ws$ cd src/image_pubsub
-:::~/ros2_ws/src/image_pubsub$ mkdir launch
-:::~/ros2_ws/src/image_pubsub$ cd launch
-:::~/ros2_ws/src/image_pubsub/launch
-:::$ touch my_launch.py  「my_launch.py」の中身を記述します。
+:::~/ros2_ws$ cd src/image_pub
+:::~/ros2_ws/src/image_pub$ mkdir launch
+:::~/ros2_ws/src/image_pub$ cd launch
+:::~/ros2_ws/src/image_pub/launch
+:::$ touch you_launch.py  「you_launch.py」の中身を記述します。
 :::「package」にパッケージ名を、「executable」にノード名（setup.pyに記述した名前）を書きます。
 :::::::::::::::::::::::::::::raspi:::::::::::::::::::::::::::::::::::
 :::::::::::::::::::::::: you_launch.py:::::::::::::::::::::::::::
 :::さらに「setup.py」に１行追記します。   data_files=[        # 略
 :::(os.path.join('share', package_name), glob('launch/*_launch.py')),   ],
 :::ビルドして実行します。   
-:::~/ros2_ws$ colcon build --packages-select image_pubsub
+:::~/ros2_ws$ colcon build --packages-select image_pub
 :::~/ros2_ws$ source install/setup.bash
-:::~/ros2_ws$ ros2 launch image_pubsub my_launch.py
-:::「img_subscriber　3」と「command_publisher_gui   4 」が同時に起動することを確認してください。
+:::~/ros2_ws$ ros2 launch image_pub you_launch.py
+:::「img_publisher　1」と「robot_controller 4 」が同時に起動することを確認してください。
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 =======■画像とコントローラ========================
