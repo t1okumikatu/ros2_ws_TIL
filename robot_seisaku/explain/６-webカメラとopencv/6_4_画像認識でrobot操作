@@ -36,7 +36,7 @@ CTL+Sで保存してからビルドして実行します。
 ===そしてRaspberry Pi側でもう一つ、第５章で作成した動作コマンドのSubscriberを走らせます。
 ===「Visual Studio Code」のターミナルで右クリックして「Split Terminal」で新しいターミナルを起動します。
 ===R:~/ros2_ws$ source /opt/ros/humble/setup.bash
-===R:~/ros2_ws$ sudi pigpiod
+===R:~/ros2_ws$ sudo pigpiod
 ===R:~/ros2_ws$ colcon build --packages-select robot_controller
 ===R:~/ros2_ws$ source install/setup.bash
 ===R:~/ros2_ws$ ros2 run robot_controller action  ====> 2 <<< 4  ノートから操作受信
