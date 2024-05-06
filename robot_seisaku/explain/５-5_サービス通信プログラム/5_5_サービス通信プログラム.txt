@@ -1,2 +1,28 @@
-５−５　サービス通信プログラム  ここまではPublisherノードとSubscriberノードによるトピック通信を扱ってきました。ROS2には他にも通信の仕組みがあります。この節ではサービス通信を使ってロボットを操縦してみます。トピック通信は基本的には送りっぱなしの通信ですが、サービス通信は送ったリクエストに対するレスポンスをもらうことができる双方向の通信となります。
+５−５　サービス通信プログラム  
+ここまではPublisherノードとSubscriberノードによるトピック通信を扱ってきました。
+ROS2には他にも通信の仕組みがあります。この節ではサービス通信を使ってロボットを操縦してみます。
+トピック通信は基本的には送りっぱなしの通信ですが、サービス通信は
+送ったリクエストに対するレスポンスをもらうことができる双方向の通信となります。
+  Fig 5-19  
+ここではノートPCからロボットに直進走行距離のコマンド（リクエスト）を送り、ロボットがその距離を走行し
+終わったところで「成功」のレスポンスを返信してみます。ノートPC側がサービスクライアント、ロボット側が
+サービスサーバーとなります。
+■サービスを定義するパッケージ（PC） 
+独自のサービスの型を定義するには、パッケージを作成する必要があります。今回は「ament_python」
+ではなく「ament_cmake」としてください。  
+~/ros2_ws$ cd src
+~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake robot_interfaces
+サービス定義用の「RobotCommand.srv」ファイルをつくります。
+~/ros2_ws/src$ cd robot_interfaces   ~/ros2_ws/src/robot_interfaces$ mkdir srv   ~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv  「RobotCommand.srv」の中身は以下のようになります。「---」をはさんで上側がリクエスト（要求走行距離）、下側がレスポンス（完了）になります。
+リスト5-6 
+RobotCommand.srv   int64 dist   ---
+bool done  「CMakeLists.txt」に追記します。  
+リスト5-7 CMakeLists.txt（一部）   
+# 略   find_package(rosidl_default_generators REQUIRED)   
+rosidl_generate_interfaces(${PROJECT_NAME} 
+"srv/RobotCommand.srv"   )   ament_package()
+
+
+
+ 
 
