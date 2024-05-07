@@ -35,8 +35,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 「package.xml」に追記します。  
 =========リスト5-8 package.xml（一部）============= 
 # 略
-<buildtool_depend>rosidl_default_generators</
-buildtool_depend>        <member_of_group>rosidl_interface_packages</member_of_group>   </package>  ビルドします。
+<buildtool_depend>rosidl_default_generators</buildtool_depend>     <member_of_group>rosidl_interface_packages</member_of_group>   </package>
+ビルドします。
 ~/ros2_ws/src/robot_interfaces/srv$ cd ~/ros2_ws
 ~/ros2_ws$ colcon build –packages-select robot_interfaces   ~/ros2_ws$ source install/setup.bash
 =================================================================
@@ -53,6 +53,7 @@ CTL + Sで保存してから「setup.py」を編集します。
 entry_points={    
 'console_scripts': [  'client=robot_srvcli.client_member_function:main',
 ],},
+========================================================
 ■サービスを定義するパッケージ（Raspberry　Pi） 
 Raspberry Pi側にもサービスを定義するパッケージを作成します。   R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
 R:~/ros2_ws$ cd src
