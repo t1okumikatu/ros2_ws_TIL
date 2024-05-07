@@ -44,7 +44,8 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 ~/ros2_ws$ source install/setup.bash
 =================================================================
 -----------------------------------------------------------------
-■クライアントノード（PC）  クライアント側のパッケージを作成します。   ~/ros2_ws$ cd src  
+■クライアントノード（PC）  クライアント側のパッケージを作成します。  
+~/ros2_ws$ cd src  
 ~/ros2_ws/src$ ros2 pkg create --build-type ament_python 
 robot_srvcli --dependencies rclpy robot_interfaces
 ~/ros2_ws/src$ cd robot_srvcli/robot_srvcli
@@ -59,11 +60,13 @@ entry_points={
 ],},
 ========================================================18:18
 ■サービスを定義するパッケージ（Raspberry　Pi） 
-Raspberry Pi側にもサービスを定義するパッケージを作成します。   R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
+Raspberry Pi側にもサービスを定義するパッケージを作成します。  
+R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
 R:~/ros2_ws$ cd src
 R:~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake 
 R:robot_interfaces
-サービス定義用の「RobotCommand.srv」ファイルをつくります。   R:~/ros2_ws/src$ cd robot_interfaces   R:~/ros2_ws/src/robot_interfaces$ mkdir srv   R:~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv
+サービス定義用の「RobotCommand.srv」ファイルをつくります。  
+R:~/ros2_ws/src$ cd robot_interfaces   R:~/ros2_ws/src/robot_interfaces$ mkdir srv   R:~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv
 「RobotCommand.srv」の中身は以下のようになります。
 「---」をはさんで上側がリクエスト、下側がレスポンスになります。
 ============リスト5-10 RobotCommand.srv================
@@ -106,7 +109,8 @@ entry_points={
 'console_scripts': [
 'service = robot_srvcli.service_member_function:main',
 ],   },  ビルドして実行します。
-R:~/ros2_ws$ colcon build --packages-select robot_srvcli   R:~/ros2_ws$ source install/setup.bash
+R:~/ros2_ws$ colcon build --packages-select robot_srvcli  
+R:~/ros2_ws$ source install/setup.bash
 R:~/ros2_ws$ sudi pigpiod
 R:~/ros2_ws$ ros2 run robot_srvcli service
 続いてノートPC側で、ビルドして実行してみます。 
