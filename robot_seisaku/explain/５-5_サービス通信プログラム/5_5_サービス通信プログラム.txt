@@ -46,7 +46,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 ■クライアントノード（PC）  クライアント側のパッケージを作成します。   ~/ros2_ws$ cd src  
 ~/ros2_ws/src$ ros2 pkg create --build-type ament_python robot_srvcli --dependencies rclpy robot_interfaces
 ~/ros2_ws/src$ cd robot_srvcli/robot_srvcli
-~/ros2_ws/src/obot_srvcli/robot_srvcli$
+~/ros2_ws/src/robot_srvcli/robot_srvcli$
 touch client_member_function.py
 「client_member_function.py」のコードを書いていきます。  
 =========リスト5-9 client_member_function.py===========
