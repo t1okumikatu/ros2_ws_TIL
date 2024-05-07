@@ -116,7 +116,7 @@ R:~/ros2_ws$ sudo pigpiod
 R:~/ros2_ws$ ros2 run robot_srvcli service
 続いてノートPC側で、ビルドして実行してみます。 
 ~/ros2_ws/src/obot_srvcli/robot_srvcli$ cd ros2_ws
-~/ros2_ws$ colcon build –packages-select robot_srvcli
+~/ros2_ws$ colcon build –-packages-select robot_srvcli
 ~/ros2_ws$ source install/setup.bash
 ~/ros2_ws$ ros2 run robot_srvcli client
 距離に数値（スリット数）を入力するとタイヤが回転を始め、完走すると
