@@ -15,7 +15,10 @@ ROS2には他にも通信の仕組みがあります。この節ではサービ�
 ~/ros2_ws$ cd src
 ~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake robot_interfaces
 サービス定義用の「RobotCommand.srv」ファイルをつくります。
-~/ros2_ws/src$ cd robot_interfaces   ~/ros2_ws/src/robot_interfaces$ mkdir srv   ~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv  「RobotCommand.srv」の中身は以下のようになります。「---」をはさんで上側がリクエスト（要求走行距離）、下側がレスポンス（完了）になります。
+~/ros2_ws/src$ cd robot_interfaces   
+~/ros2_ws/src/robot_interfaces$ mkdir srv   
+~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv  
+「RobotCommand.srv」の中身は以下のようになります。「---」をはさんで上側がリクエスト（要求走行距離）、下側がレスポンス（完了）になります。
 ==============リスト5-6================
 
 RobotCommand.srv   int64 dist   ---
