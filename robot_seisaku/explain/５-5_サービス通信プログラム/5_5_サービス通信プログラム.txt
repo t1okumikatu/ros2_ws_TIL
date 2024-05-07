@@ -57,7 +57,7 @@ CTL + Sで保存してから「setup.py」を編集します。
 entry_points={    
 'console_scripts': [  'client=robot_srvcli.client_member_function:main',
 ],},
-========================================================
+========================================================18:18
 ■サービスを定義するパッケージ（Raspberry　Pi） 
 Raspberry Pi側にもサービスを定義するパッケージを作成します。   R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
 R:~/ros2_ws$ cd src
