@@ -1,9 +1,9 @@
-５−５　サービス通信プログラム  
+========５−５　サービス通信プログラム ================== 
 ここまではPublisherノードとSubscriberノードによるトピック通信を扱ってきました。
 ROS2には他にも通信の仕組みがあります。この節ではサービス通信を使ってロボットを操縦してみます。
 トピック通信は基本的には送りっぱなしの通信ですが、サービス通信は
 送ったリクエストに対するレスポンスをもらうことができる双方向の通信となります。
-  Fig 5-19  
+  ========Fig 5-19 ========== 
 ここではノートPCからロボットに直進走行距離のコマンド（リクエスト）を送り、ロボットがその距離を走行し
 終わったところで「成功」のレスポンスを返信してみます。ノートPC側がサービスクライアント、ロボット側が
 サービスサーバーとなります。
@@ -14,7 +14,8 @@ ROS2には他にも通信の仕組みがあります。この節ではサービ�
 ~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake robot_interfaces
 サービス定義用の「RobotCommand.srv」ファイルをつくります。
 ~/ros2_ws/src$ cd robot_interfaces   ~/ros2_ws/src/robot_interfaces$ mkdir srv   ~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv  「RobotCommand.srv」の中身は以下のようになります。「---」をはさんで上側がリクエスト（要求走行距離）、下側がレスポンス（完了）になります。
-リスト5-6 
+==============リスト5-6================
+
 RobotCommand.srv   int64 dist   ---
 bool done  「CMakeLists.txt」に追記します。  
 リスト5-7 CMakeLists.txt（一部）   
@@ -22,7 +23,7 @@ bool done  「CMakeLists.txt」に追記します。
 rosidl_generate_interfaces(${PROJECT_NAME} 
 "srv/RobotCommand.srv"   )   ament_package()
 「package.xml」に追記します。  
-リスト5-8 package.xml（一部） 
+=========リスト5-8 package.xml（一部）============= 
 # 略
 <buildtool_depend>rosidl_default_generators</
 buildtool_depend>        <member_of_group>rosidl_interface_packages</member_of_group>   </package>  ビルドします。
@@ -34,7 +35,7 @@ buildtool_depend>        <member_of_group>rosidl_interface_packages</member_of_g
 ~/ros2_ws/src/obot_srvcli/robot_srvcli$
 touch client_member_function.py
 「client_member_function.py」のコードを書いていきます。  
-リスト5-9 client_member_function.py
+=========リスト5-9 client_member_function.py===========
 
 CTL + Sで保存してから「setup.py」を編集します。 
 entry_points={    
@@ -47,12 +48,12 @@ R:~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake R:robot_interfaces
 サービス定義用の「RobotCommand.srv」ファイルをつくります。   R:~/ros2_ws/src$ cd robot_interfaces   R:~/ros2_ws/src/robot_interfaces$ mkdir srv   R:~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv
 「RobotCommand.srv」の中身は以下のようになります。
 「---」をはさんで上側がリクエスト、下側がレスポンスになります。
-リスト5-10 RobotCommand.srv
+============リスト5-10 RobotCommand.srv================
 int64 dist
 ---
 bool done
 「CMakeLists.txt」に追記します。  
-リスト5-11 CMakeLists.txt（一部）
+===========リスト5-11 CMakeLists.txt（一部）=============
 # 略
 find_package(rosidl_default_generators REQUIRED)   rosidl_generate_interfaces(${PROJECT_NAME}        
    "srv/RobotCommand.srv"
@@ -60,7 +61,7 @@ find_package(rosidl_default_generators REQUIRED)   rosidl_generate_interfaces(${
 ament_package()
 
 「package.xml」に追記します。
-リスト5-12 package.xml（一部）
+==========リスト5-12 package.xml（一部）================
 # 略        <buildtool_depend>rosidl_default_generators</buildtool_depend>  
 <member_of_group>rosidl_interface_packages</member_of_group>   </package>
 ビルドします。 
@@ -77,7 +78,7 @@ touch service_member_function.py
 「robot_controller」パッケージの「command_subscriber.py」を元に書き換え
 ていきます。
 今回は目標速度は0.3で固定としています。
-リスト5-13 service_member_function.py
+============リスト5-13 service_member_function.py============
 CTL + Sで保存してから「setup.py」を編集します。
 entry_points={
 'console_scripts': [
@@ -93,7 +94,7 @@ R:~/ros2_ws$ ros2 run robot_srvcli service
 ~/ros2_ws$ ros2 run robot_srvcli client
 距離に数値（スリット数）を入力するとタイヤが回転を始め、完走すると
 ロボットからレスポンスが返ってきます。 
-Fig 5-20
+============Fig 5-20================
 
 
 
