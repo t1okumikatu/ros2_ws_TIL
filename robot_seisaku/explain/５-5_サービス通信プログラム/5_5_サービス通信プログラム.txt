@@ -63,8 +63,7 @@ entry_points={
 Raspberry Pi側にもサービスを定義するパッケージを作成します。  
 R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
 R:~/ros2_ws$ cd src
-R:~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake 
-R:robot_interfaces
+R:~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake robot_interfaces
 サービス定義用の「RobotCommand.srv」ファイルをつくります。  
 R:~/ros2_ws/src$ cd robot_interfaces  
 R:~/ros2_ws/src/robot_interfaces$ mkdir srv  
