@@ -112,7 +112,7 @@ entry_points={
 ],   },  ビルドして実行します。
 R:~/ros2_ws$ colcon build --packages-select robot_srvcli  
 R:~/ros2_ws$ source install/setup.bash
-R:~/ros2_ws$ sudi pigpiod
+R:~/ros2_ws$ sudo pigpiod
 R:~/ros2_ws$ ros2 run robot_srvcli service
 続いてノートPC側で、ビルドして実行してみます。 
 ~/ros2_ws/src/obot_srvcli/robot_srvcli$ cd ros2_ws
