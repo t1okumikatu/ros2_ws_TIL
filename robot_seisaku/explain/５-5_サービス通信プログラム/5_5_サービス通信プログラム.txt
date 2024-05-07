@@ -21,6 +21,94 @@ bool done  「CMakeLists.txt」に追記します。
 # 略   find_package(rosidl_default_generators REQUIRED)   
 rosidl_generate_interfaces(${PROJECT_NAME} 
 "srv/RobotCommand.srv"   )   ament_package()
+「package.xml」に追記します。  
+リスト5-8 package.xml（一部） 
+# 略
+<buildtool_depend>rosidl_default_generators</
+buildtool_depend>        <member_of_group>rosidl_interface_packages</member_of_group>   </package>  ビルドします。
+~/ros2_ws/src/robot_interfaces/srv$ cd ~/ros2_ws
+~/ros2_ws$ colcon build –packages-select robot_interfaces   ~/ros2_ws$ source install/setup.bash
+■クライアントノード（PC）  クライアント側のパッケージを作成します。   ~/ros2_ws$ cd src  
+~/ros2_ws/src$ ros2 pkg create --build-type ament_python robot_srvcli --dependencies rclpy robot_interfaces
+~/ros2_ws/src$ cd robot_srvcli/robot_srvcli
+~/ros2_ws/src/obot_srvcli/robot_srvcli$
+touch client_member_function.py
+「client_member_function.py」のコードを書いていきます。  
+リスト5-9 client_member_function.py
+
+CTL + Sで保存してから「setup.py」を編集します。 
+entry_points={    
+'console_scripts': [  'client=robot_srvcli.client_member_function:main',
+],},
+■サービスを定義するパッケージ（Raspberry　Pi） 
+Raspberry Pi側にもサービスを定義するパッケージを作成します。   R:~/ros2_ws$ source /opt/ros/humble/setup.bash   
+R:~/ros2_ws$ cd src
+R:~/ros2_ws/src$ ros2 pkg create --build-type ament_cmake R:robot_interfaces
+サービス定義用の「RobotCommand.srv」ファイルをつくります。   R:~/ros2_ws/src$ cd robot_interfaces   R:~/ros2_ws/src/robot_interfaces$ mkdir srv   R:~/ros2_ws/src/robot_interfaces/srv$ touch RobotCommand.srv
+「RobotCommand.srv」の中身は以下のようになります。
+「---」をはさんで上側がリクエスト、下側がレスポンスになります。
+リスト5-10 RobotCommand.srv
+int64 dist
+---
+bool done
+「CMakeLists.txt」に追記します。  
+リスト5-11 CMakeLists.txt（一部）
+# 略
+find_package(rosidl_default_generators REQUIRED)   rosidl_generate_interfaces(${PROJECT_NAME}        
+   "srv/RobotCommand.srv"
+)
+ament_package()
+
+「package.xml」に追記します。
+リスト5-12 package.xml（一部）
+# 略        <buildtool_depend>rosidl_default_generators</buildtool_depend>  
+<member_of_group>rosidl_interface_packages</member_of_group>   </package>
+ビルドします。 
+R:~/ros2_ws/src/robot_interfaces/srv$ cd ~/ros2_ws
+R:~/ros2_ws$ colcon build –packages-select robot_interfaces   R:~/ros2_ws$ source install/setup.bash
+■サービスノード（Raspberry　Pi）
+Raspberry Piにサービス側のパッケージを作成します。
+R:~/ros2_ws$ cd src
+R:~/ros2_ws/src$ 
+ros2 pkg create --build-type ament_python robot_srvcli --depencies rclpy robot_interfaces 
+R:~/ros2_ws/src$ cd robot_srvcli/robot_srvcli   R:~/ros2_ws/src/obot_srvcli/robot_srvcli$
+touch service_member_function.py
+「service_member_function.py」のコードを書いていきます。
+「robot_controller」パッケージの「command_subscriber.py」を元に書き換え
+ていきます。
+今回は目標速度は0.3で固定としています。
+リスト5-13 service_member_function.py
+CTL + Sで保存してから「setup.py」を編集します。
+entry_points={
+'console_scripts': [
+'service = robot_srvcli.service_member_function:main',
+],   },  ビルドして実行します。
+R:~/ros2_ws$ colcon build --packages-select robot_srvcli   R:~/ros2_ws$ source install/setup.bash
+R:~/ros2_ws$ sudi pigpiod
+R:~/ros2_ws$ ros2 run robot_srvcli service
+続いてノートPC側で、ビルドして実行してみます。 
+~/ros2_ws/src/obot_srvcli/robot_srvcli$ cd ros2_ws
+~/ros2_ws$ colcon build –packages-select robot_srvcli
+~/ros2_ws$ source install/setup.bash
+~/ros2_ws$ ros2 run robot_srvcli client
+距離に数値（スリット数）を入力するとタイヤが回転を始め、完走すると
+ロボットからレスポンスが返ってきます。 
+Fig 5-20
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
