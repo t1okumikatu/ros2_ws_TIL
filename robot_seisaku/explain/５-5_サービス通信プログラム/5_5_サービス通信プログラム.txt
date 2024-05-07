@@ -40,7 +40,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
 </package>
 ビルドします。
 ~/ros2_ws/src/robot_interfaces/srv$ cd ~/ros2_ws
-~/ros2_ws$ colcon build –packages-select robot_interfaces 
+~/ros2_ws$ colcon build --packages-select robot_interfaces 
 ~/ros2_ws$ source install/setup.bash
 =================================================================
 -----------------------------------------------------------------
