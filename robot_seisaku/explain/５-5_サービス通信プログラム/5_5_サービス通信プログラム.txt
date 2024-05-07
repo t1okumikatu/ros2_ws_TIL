@@ -21,9 +21,14 @@ ROS2には他にも通信の仕組みがあります。この節ではサービ�
 「RobotCommand.srv」の中身は以下のようになります。「---」をはさんで上側がリクエスト（要求走行距離）、下側がレスポンス（完了）になります。
 ==============リスト5-6================
 
-RobotCommand.srv   int64 dist   ---
-bool done  「CMakeLists.txt」に追記します。  
-リスト5-7 CMakeLists.txt（一部）   
+RobotCommand.srv  
+int64 dist  
+---
+bool done  
+「CMakeLists.txt」に追記します。  
+
+リスト5-7 CMakeLists.txt（一部） 
+
 # 略   find_package(rosidl_default_generators REQUIRED)   
 rosidl_generate_interfaces(${PROJECT_NAME} 
 "srv/RobotCommand.srv"   )   ament_package()
